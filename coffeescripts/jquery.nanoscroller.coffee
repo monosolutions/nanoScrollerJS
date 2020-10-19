@@ -579,10 +579,10 @@
       events = @events
       if not @options.disableResize
         @win
-          .bind RESIZE, events[RESIZE]
+          .on(RESIZE, events[RESIZE])
       if not @iOSNativeScrolling
         @slider
-          .bind MOUSEDOWN, events[DOWN]
+          .on(MOUSEDOWN, events[DOWN])
         @pane
           .on(MOUSEDOWN, events[PANEDOWN])
           .on("#{MOUSEWHEEL} #{DOMSCROLL}", events[WHEEL])
@@ -600,8 +600,8 @@
       @win
         .off(RESIZE, events[RESIZE])
       if not @iOSNativeScrolling
-        do @slider.unbind
-        do @pane.unbind
+        do @slider.off
+        do @pane.off
       @$content
         .off("#{SCROLL} #{MOUSEWHEEL} #{DOMSCROLL} #{TOUCHMOVE}", events[SCROLL])
       return
